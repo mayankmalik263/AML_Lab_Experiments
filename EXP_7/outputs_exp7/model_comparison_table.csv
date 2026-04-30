@@ -1,0 +1,6 @@
+Sr No.,Model,Accuracy
+1,Logistic Regression,0.9333
+2,Decision Tree,0.9333
+3,Random Forest,0.9
+4,SVM (RBF),0.9667
+5,KNN,0.9333
