@@ -36,7 +36,8 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import (
     accuracy_score,
     precision_score,
@@ -221,7 +222,7 @@ def train_classifiers(
         "K-Nearest Neighbors": KNeighborsClassifier(n_neighbors=5),
         "Support Vector Machine": SVC(kernel="rbf", probability=True, random_state=42),
         "Random Forest": RandomForestClassifier(n_estimators=100, random_state=42),
-        "Gradient Boosting": GradientBoostingClassifier(n_estimators=100, random_state=42),
+        "Decision Tree": DecisionTreeClassifier(random_state=42),
     }
 
     results = {}
@@ -337,15 +338,15 @@ def analyze_feature_importance(results: dict, feature_names: list) -> None:
         plt.close()
         print("\n   ✓ Saved: feature_importance.png")
 
-    # Gradient Boosting Feature Importance
-    if "Gradient Boosting" in results:
-        gb_model = results["Gradient Boosting"]["model"]
-        feature_importance_gb = pd.DataFrame(
-            {"Feature": feature_names, "Importance": gb_model.feature_importances_}
+    # Decision Tree Feature Importance
+    if "Decision Tree" in results:
+        dt_model = results["Decision Tree"]["model"]
+        feature_importance_dt = pd.DataFrame(
+            {"Feature": feature_names, "Importance": dt_model.feature_importances_}
         ).sort_values("Importance", ascending=False)
 
-        print("\n📊 GRADIENT BOOSTING - TOP 10 MOST IMPORTANT FEATURES:")
-        print(feature_importance_gb.head(10).to_string(index=False))
+        print("\n📊 DECISION TREE - TOP 10 MOST IMPORTANT FEATURES:")
+        print(feature_importance_dt.head(10).to_string(index=False))
 
 
 def visualize_results(results: dict, comparison_df: pd.DataFrame, y_test: pd.Series) -> None:
