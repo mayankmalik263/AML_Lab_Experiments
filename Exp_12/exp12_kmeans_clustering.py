@@ -20,7 +20,7 @@ np.random.seed(42)
 plt.style.use('seaborn-v0_8-darkgrid')
 sns.set_palette("husl")
 
-
+    
 def generate_synthetic_dataset(n_samples=300, n_features=2, n_true_clusters=3, noise_std=0.6):
     """
     Objective 1: Generate and visualize synthetic 2D dataset
