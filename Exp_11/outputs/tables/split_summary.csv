@@ -1,0 +1,4 @@
+split,rows,features
+train,5216,30
+val,16,30
+test,624,30
